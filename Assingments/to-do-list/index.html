@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Document</title>
+</head>
+<body>
+ <h1>todo-list</h1>
+<input type="text" id="todo-text">
+<button id="todo-add">Add</button>
+<div id="todo-item"></div>
+<script>
+   let todoList = JSON.parse(localStorage.getItem("todos"));
+  if (!todoList) {
+    todoList = [];
+  }
+  function updateList() {
+    const taskContainer = document.getElementById("todo-item");
+    taskContainer.innerHTML = "";
+    for (let i = 0; i < todoList.length; i++) {
+      const task = todoList[i];
+      const div = document.createElement("div");
+       div.textContent = task;
+      const btn = document.createElement("button");
+      btn.textContent = "remove";
+      btn.onclick = function() {
+       todoList.splice(i, 1); 
+         localStorage.setItem("todos", JSON.stringify(todoList));
+         updateList();
+       };
+      div.appendChild(btn);
+     taskContainer.appendChild(div);
+     }
+   }
+   document.getElementById("todo-add").onclick = function() {
+    const input = document.getElementById("todo-text");
+     const newTask = input.value;
+     if (newTask !== "" && !todoList.includes(newTask)) {
+      todoList.push(newTask);
+       localStorage.setItem("todos", JSON.stringify(todoList));
+       input.value = "";
+     updateList();
+     } else {
+      alert("Item already added in todo");
+    }
+  };
+  updateList();
+</script>
+</body>
+</html>
