@@ -1,3 +1,3 @@
 # WebDevClass
 ## This is my first repo
-## Im a good boy
+## Jonah Campbell is a cool guy

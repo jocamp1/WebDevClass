@@ -8,7 +8,24 @@
 <input type="text" id="todo-text">
 <button id="todo-add">Add</button>
 <div id="todo-item"></div>
-<script>
+<script type="module">
+
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyB1YqWeR9WWtkanLOYQ4lvMTeEFQkburSo",
+    authDomain: "todolist-dacbb.firebaseapp.com",
+    projectId: "todolist-dacbb",
+    storageBucket: "todolist-dacbb.firebasestorage.app",
+    messagingSenderId: "893384397647",
+    appId: "1:893384397647:web:ac9d227d875d81ec55eb3a",
+    measurementId: "G-D2DF4LK6L4"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+
    let todoList = JSON.parse(localStorage.getItem("todos"));
   if (!todoList) {
     todoList = [];
